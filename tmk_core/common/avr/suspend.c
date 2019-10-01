@@ -175,7 +175,11 @@ bool                       suspend_wakeup_condition(void) {
  *
  * FIXME: needs doc
  */
-__attribute__((weak)) void suspend_wakeup_init_user(void) {}
+__attribute__((weak)) void suspend_wakeup_init_user(void) {
+	//added by raph	
+	rgblight_setrgb_range(255,20,147,0,7);
+    rgblight_setrgb_range(0,255,255,7,14);	
+}
 
 /** \brief run keyboard level code immediately after wakeup
  *

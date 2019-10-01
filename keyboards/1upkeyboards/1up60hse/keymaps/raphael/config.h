@@ -53,15 +53,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define BACKLIGHT_LEVELS 5
 
 #define RGB_DI_PIN F0
+//#define DRIVER_LED_TOTAL 14 // added by raph
+
+
 #ifdef RGB_DI_PIN
 //#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #define RGBLED_NUM 14
+//#define RGBLIGHT_LED_MAP {0,1,2,3,4,5,6,7,8,9,10,11,12,13}
 #define RGBLIGHT_HUE_STEP 8
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
 #define RGBLIGHT_SLEEP
 #endif
 
+
+/*
+void keyboard_post_init_rgb(void) {
+#if defined(RGBLIGHT_ENABLE) && defined(RGBLIGHT_STARTUP_ANIMATION)
+    if (userspace_config.rgb_layer_change) { rgblight_enable_noeeprom(); }
+    if (rgblight_config.enable) {
+        layer_state_set_user(layer_state);
+        uint16_t old_hue = rgblight_config.hue;
+        rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+        for (uint16_t i = 255; i > 0; i--) {
+            rgblight_sethsv_noeeprom( ( i + old_hue) % 255, 255, 255);
+            matrix_scan();
+            wait_ms(10);
+        }
+    }
+#endif
+    layer_state_set_user(layer_state);
+}
+*/
+
+#define PERMISSIVE_HOLD
+//#define TAPPING_FORCE_HOLD
+//#define COMBO_COUNT 3
+//#define COMBO_TERM 500
+//#define TAPPING_TERM 200
 /* Debounce reduces chatter (unintended double-presses) - set 0 if debouncing is not needed */
 #define DEBOUNCE 5
 
@@ -99,7 +129,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * power-up.
  *
  */
-//#define FORCE_NKRO
+#define FORCE_NKRO
 
 /*
  * Magic Key Options

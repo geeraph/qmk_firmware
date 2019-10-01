@@ -1001,7 +1001,7 @@ int main(void) {
         MIDI_Device_USBTask(&USB_MIDI_Interface);
 #endif
 
-#if defined(RGBLIGHT_ANIMATIONS) & defined(RGBLIGHT_ENABLE)
+#if defined(RGBLIGHT_ANIMATIONS) && defined(RGBLIGHT_ENABLE)
         rgblight_task();
 #endif
 
