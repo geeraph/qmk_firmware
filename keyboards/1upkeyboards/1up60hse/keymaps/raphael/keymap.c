@@ -1,5 +1,7 @@
 #include QMK_KEYBOARD_H
 
+bool is_ctrl_pressed;
+bool is_alt_pressed;
 bool mute_toggle;
 bool caps_lock;
 
@@ -60,6 +62,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t * record) {
       rgblight_setrgb_range(0,255,255,7,14);
     }
     return true;
+  case KC_LCTRL:
+  if (record -> event.pressed) {
+    is_ctrl_pressed = true;
+  } else {
+    is_ctrl_pressed = false;
+  }
+return true;
+case KC_LALT:
+  if (record -> event.pressed) {
+    is_alt_pressed = true;
+  } else {
+    is_alt_pressed = false;
+  }
+return true;
+case KC_4:
+  if (record -> event.pressed) {
+    if (is_alt_pressed && !is_ctrl_pressed) {
+      register_code(KC_F4);
+      unregister_code(KC_F4);
+    }
+  }
+return true;
+case KC_5:
+  if (record -> event.pressed) {
+    if (is_alt_pressed && !is_ctrl_pressed) {
+      unregister_code(KC_LALT);
+	  register_code(KC_F5);
+      unregister_code(KC_F5);
+    }
+  }
+return true;
+case KC_BSPACE:
+  if (record -> event.pressed) {
+    if (is_ctrl_pressed && is_alt_pressed) {
+      register_code(KC_DEL);
+      unregister_code(KC_DEL);
+    }
+  }
+return true;
   default:
     return true;
   }
